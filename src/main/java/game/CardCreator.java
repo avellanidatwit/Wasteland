@@ -1,6 +1,5 @@
 package game;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -15,8 +14,8 @@ import java.util.HashMap;
  */
 class CardCreator {
 	private HashMap<String, Card> cardData;
-	private HashMap<ArrayList<String>, Card> recipes = new HashMap<ArrayList<String>, Card>();
-	private HashMap<String, Card> hammerList = new HashMap<String, Card>();
+	private HashMap<ArrayList<String>, Card> recipes = new HashMap<>();
+	private HashMap<String, Card> hammerList = new HashMap<>();
 
 	// Static variable reference of single_instance
 	// of type Singleton
@@ -104,7 +103,7 @@ class CardCreator {
 	 */
 	public Card canCraft(Card card1, Card card2) {
 		@SuppressWarnings("serial")
-		ArrayList<String> input = new ArrayList<String>() {
+		ArrayList<String> input = new ArrayList<>() {
 			{
 				add(card1.getName());
 				add(card2.getName());
@@ -112,7 +111,7 @@ class CardCreator {
 		};
 		Collections.sort(input);
 		for (ArrayList<String> key : recipes.keySet()) {
-			ArrayList<String> temp = new ArrayList<String>(key);
+			ArrayList<String> temp = new ArrayList<>(key);
 			Collections.sort(temp);
 			if (input.equals(temp)) {
 				return recipes.get(key);

@@ -1,6 +1,5 @@
 package game;
 
-
 /**
  * Class that determines how many actions are left.
  *

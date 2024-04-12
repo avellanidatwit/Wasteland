@@ -1,6 +1,5 @@
 package game;
 
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,6 +17,7 @@ public final class User {
 	protected Deck trash;
 	protected static int totalId = 0;
 	protected int id;
+
 	/**
 	 * 0-arg constructor
 	 */

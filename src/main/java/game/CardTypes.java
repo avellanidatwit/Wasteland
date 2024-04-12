@@ -1,6 +1,5 @@
 package game;
 
-
 /**
  * Types of possible cards, also helps to set the effect types.
  *

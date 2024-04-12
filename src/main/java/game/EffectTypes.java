@@ -1,6 +1,5 @@
 package game;
 
-
 /**
  * Types of effects that a card can provide
  *

@@ -1,6 +1,5 @@
 package game;
 
-
 /**
  * A network request
  *

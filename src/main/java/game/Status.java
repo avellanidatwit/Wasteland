@@ -1,6 +1,5 @@
 package game;
 
-
 /**
  * Class that manages the turn state.
  *

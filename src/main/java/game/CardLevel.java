@@ -1,6 +1,5 @@
 package game;
 
-
 /**
  * Enum utilized to determine a card's level.
  *

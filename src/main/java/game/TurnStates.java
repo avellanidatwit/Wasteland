@@ -1,6 +1,5 @@
 package game;
 
-
 /**
  * Enum for the purpose of controlling the turns
  *
