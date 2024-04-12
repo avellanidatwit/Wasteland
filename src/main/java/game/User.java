@@ -1,12 +1,13 @@
 package game;
 
+
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Class to establish a user's identity and hand.
  *
- * @author santorsa
+ * @author evelyn
  * @category GameSystems
  */
 public final class User {
@@ -18,9 +19,6 @@ public final class User {
 	protected static int totalId = 0;
 	protected int id;
 
-	/**
-	 * 0-arg constructor
-	 */
 	public User() {
 		this.USERNAME = null;
 		this.pile = null;
@@ -41,7 +39,7 @@ public final class User {
 
 		// Add the forest booster to starter deck
 		this.pile = new Deck();
-		pile.addCard(CardCreator.getInstance().createCard("Forest Booster"));
+		Forest();
 		pile.shuffleDeck();
 
 		// Create the deck objects for the player
@@ -104,7 +102,7 @@ public final class User {
 		return card;
 	}
 
-	public ArrayList<Card> ForestBooster() {
+	public ArrayList<Card> Forest() {
 		ArrayList<Card> list = new ArrayList<>();
 		list.add(booster("Apple"));
 		list.add(booster("Ore Vein"));
@@ -114,14 +112,25 @@ public final class User {
 		list.add(booster("Rope"));
 		list.add(booster("Rope"));
 		list.add(booster("Sharp Stone"));
-		list.add(booster("Stick"));
 
+		switch (randomIntRange(1, 7)) {
+		case 1, 4, 5:
+			list.add(booster("Tree"));
+			break;
+		case 2, 6, 7:
+			list.add(booster("Ore Vein"));
+			break;
+		case 3:
+			list.add(booster("Forest"));
+			break;
+		}
+		
 		for (int i = 0; i < 3; i++) {
-			switch (randomIntRange(1, 3)) {
-			case 1:
+			switch (randomIntRange(1, 7)) {
+			case 1, 4, 5:
 				list.add(booster("Log"));
 				break;
-			case 2:
+			case 2, 6, 7:
 				list.add(booster("Stone"));
 				break;
 			case 3:
@@ -131,8 +140,8 @@ public final class User {
 		}
 
 		for (int i = 0; i < randomIntRange(3, 4); i++) {
-			switch (randomIntRange(1, 2)) {
-			case 1:
+			switch (randomIntRange(1, 3)) {
+			case 1, 3:
 				list.add(booster("Log"));
 				break;
 			case 2:
@@ -141,8 +150,8 @@ public final class User {
 			}
 		}
 		for (int i = 0; i < randomIntRange(3, 4); i++) {
-			switch (randomIntRange(1, 2)) {
-			case 1:
+			switch (randomIntRange(1, 3)) {
+			case 1, 3:
 				list.add(booster("Stone"));
 				break;
 			case 2:
@@ -164,13 +173,13 @@ public final class User {
 		ArrayList<Card> list = new ArrayList<>();
 		Card card;
 		if (range == 1 || range == 2) {
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 2; i++) {
 				card = CardCreator.getInstance().createCard("Stick");
 				moveToPile(card);
 				list.add(card);
 			}
 		} else {
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 3; i++) {
 				card = CardCreator.getInstance().createCard("Stick");
 				moveToPile(card);
 				list.add(card);
@@ -245,16 +254,33 @@ public final class User {
 		}
 		return list;
 	}
-
-	public ArrayList<Card> Bandage() {
-		ArrayList<Card> list = new ArrayList<>();
+	
+	public ArrayList<Card> Ore() {
+		ArrayList<Card> list = new ArrayList<Card>();
 		Card card;
-		for (int i = 0; i < 2; i++) {
-			card = CardCreator.getInstance().createCard("Bandage");
-			moveToPile(card);
+		switch (hand.cards.size()) {
+		case 0:
+			return null;
+		case 1:
+			card = hand.getCard();
 			list.add(card);
+			break;
+		default:
+			card = hand.getCard();
+			list.add(card);
+			card = hand.getCard();
+			list.add(card);
+			break;
 		}
 		return list;
+	}
+
+	public void Bandage() {
+		Card card;
+		for (int i = 0; i < 5; i++) {
+			card = CardCreator.getInstance().createCard("Used Bandage");
+			moveToPile(card);
+		}
 	}
 
 	public ArrayList<Card> Apple() {
@@ -294,7 +320,7 @@ public final class User {
 
 	public ArrayList<Card> Rope() {
 		ArrayList<Card> list = new ArrayList<>();
-		switch (hand.cards.size()) {
+		switch (this.hand.cards.size()) {
 		case 0:
 			list = null;
 			break;

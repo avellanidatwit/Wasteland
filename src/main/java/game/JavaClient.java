@@ -1,5 +1,6 @@
 package game;
 
+
 import java.io.IOException;
 import java.net.InetAddress;
 
@@ -13,7 +14,7 @@ import javafx.application.Platform;
  * A players connection to the game server.
  *
  * @author Dominic Avellani
- * @author santorsa
+ * @author evelyn
  * @category Networking
  */
 public class JavaClient {

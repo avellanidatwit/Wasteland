@@ -1,12 +1,13 @@
 package game;
 
+
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 
 /**
  * Class to handle server side operations
  *
- * @author santorsa
+ * @author evelyn
  * @category Networking
  */
 public class Network {

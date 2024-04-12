@@ -1,5 +1,6 @@
 package game;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,14 +9,14 @@ import java.util.HashMap;
  * Class to create all the cards locally, because local object storage is hard
  * in literally everything without native JSON support.
  *
- * @author santorsa
+ * @author evelyn
  *
  * @category Cards
  */
 class CardCreator {
 	private HashMap<String, Card> cardData;
-	private HashMap<ArrayList<String>, Card> recipes = new HashMap<>();
-	private HashMap<String, Card> hammerList = new HashMap<>();
+	private HashMap<ArrayList<String>, Card> recipes = new HashMap<ArrayList<String>, Card>();
+	private HashMap<String, Card> hammerList = new HashMap<String, Card>();
 
 	// Static variable reference of single_instance
 	// of type Singleton
@@ -31,7 +32,7 @@ class CardCreator {
 	private CardCreator() {
 		cardData = new HashMap<>() {
 			{
-				put("Forest Booster", new Card("Forest Booster", "/Forest.png", 1));
+				put("Forest", new Card("Forest", "/Forest.png", 1));
 				put("Stick", new Card("Stick", "/Stick.png", 3));
 				put("Log", new Card("Log", "/Log.png", 3));
 				put("Stone", new Card("Stone", "/Stone.png", 3));
@@ -43,8 +44,9 @@ class CardCreator {
 				put("Seedling", new Card("Seedling", "/Seedling3.png", 3));
 				put("Tree", new Card("Tree", "/Tree.png", 3));
 				put("Glass", new Card("Glass", "/Glass.png", 3));
-				put("Hammer", new Card("Hammer", "/Hammer.png", 1));
-				put("Ore Vein", new Card("Ore Vein", "/Ore.png", 3));
+				put("Hammer", new Card("Hammer", "/Hammer.png", 2));
+				put("Ore Vein", new Card("Ore Vein", "/OreVein.png", 3));
+				put("Ore", new Card("Ore", "/Ore.png", 3));
 			}
 		};
 
@@ -72,10 +74,11 @@ class CardCreator {
 				add("Tree");
 				add("Tree");
 			}
-		}, createCard("Forest Booster"));
+		}, createCard("Forest"));
 
 		// Hammer setup
 		hammerList.put("Stone", createCard("Glass"));
+		hammerList.put("Ore Vein", createCard("Ore"));
 	}
 
 	/**
@@ -103,7 +106,7 @@ class CardCreator {
 	 */
 	public Card canCraft(Card card1, Card card2) {
 		@SuppressWarnings("serial")
-		ArrayList<String> input = new ArrayList<>() {
+		ArrayList<String> input = new ArrayList<String>() {
 			{
 				add(card1.getName());
 				add(card2.getName());
@@ -111,7 +114,7 @@ class CardCreator {
 		};
 		Collections.sort(input);
 		for (ArrayList<String> key : recipes.keySet()) {
-			ArrayList<String> temp = new ArrayList<>(key);
+			ArrayList<String> temp = new ArrayList<String>(key);
 			Collections.sort(temp);
 			if (input.equals(temp)) {
 				return recipes.get(key);

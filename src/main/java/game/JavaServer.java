@@ -1,5 +1,6 @@
 package game;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,7 +14,7 @@ import com.esotericsoftware.kryonet.Server;
  * A class that represents a game server which players connect to and get their
  * actions from.
  *
- * @author santorsa
+ * @author evelyn
  * @category Networking
  */
 public class JavaServer {
@@ -56,10 +57,11 @@ public class JavaServer {
 						actions--;
 						sendNumberOfActions(actions, connection.getID());
 						card.action = Action.NONE;
-						user.pile.addCard(card);
+						user.hand.addCard(card);
+						server.sendToTCP(connection.getID(), card);
 						list = new ArrayList<>();
 						list.add(card);
-						text = "Hammered " + formatList(list);
+						text = "You Hammered " + formatList(list);
 						printToUser(text, connection.getID());
 						break;
 					case REMOVEFROMHAND:
@@ -162,8 +164,8 @@ public class JavaServer {
 
 	public void cardEffects(Card card, Connection connection, User user) {
 		// Forest Booster Pack
-		if (card.getName().equals("Forest Booster")) {
-			String text = "You found " + formatList(user.ForestBooster()) + ".";
+		if (card.getName().equals("Forest")) {
+			String text = "You found " + formatList(user.Forest()) + ".";
 			printToUser(text, connection.getID());
 		}
 
@@ -200,11 +202,42 @@ public class JavaServer {
 			String text = "You found " + formatList(user.Stone()) + ".";
 			printToUser(text, connection.getID());
 		}
+		
+		// Ore
+		if (card.getName().equals("Ore")) {
+			ArrayList<Card> ore = getOpponentUser(connection.getID()).Ore();
+			String userOutput, opponent;
+			if (ore == null) {
+				userOutput = "Opponent's hand is empty";
+				opponent = "Opponent's Sharp Stone destroyed nothing";
+			} else {
+				userOutput = "You destroyed your opponents " + formatList(ore) + ".";
+				opponent = "Your " + formatList(ore) + " were destroyed.";
+				for(Card c : ore) {
+					c.action = Action.DISCARD;
+					server.sendToTCP(getOpponentInt(connection.getID()), c);
+				}
+			}
+			printToUser(userOutput, connection.getID());
+			printToUser(opponent, getOpponentInt(connection.getID()));
+		}
 
 		// Bandage
 		if (card.getName().equals("Bandage")) {
-			String text = "You found " + formatList(user.Bandage()) + ".";
-			printToUser(text, connection.getID());
+			user.Bandage();
+			printToUser("You made 5 Used Bandages.", connection.getID());
+		}
+		
+		// Used Bandage
+		if (card.getName().equals("Used Bandage")) {
+			if (user.pile.cards.size() > 0) {
+				card = user.drawCard();
+				if (card != null) {
+					server.sendToTCP(connection.getID(), card);
+					printToUser("You drew a card.", connection.getID());
+				}
+			}
+			else printToUser("Your pile is empty.", connection.getID());
 		}
 
 		// Apple
@@ -243,13 +276,13 @@ public class JavaServer {
 				sharpStone.action = Action.DISCARD;
 				server.sendToTCP(getOpponentInt(connection.getID()), sharpStone);
 			}
-
 			printToUser(userOutput, connection.getID());
 			printToUser(opponent, getOpponentInt(connection.getID()));
 		}
 
 		// Rope
 		if (card.getName().equals("Rope")) {
+			System.out.println("Used Rope: " +getOpponentUser(connection.getID()).hand);
 			ArrayList<Card> rope = getOpponentUser(connection.getID()).Rope();
 			String userOutput, opponent;
 			if (rope == null) {

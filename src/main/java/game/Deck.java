@@ -1,5 +1,6 @@
 package game;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,7 +9,7 @@ import java.util.Comparator;
  * Class that establishes a deck, for use in the user hand and the overall deck
  * of cards that will be drawn from.
  *
- * @author santorsa
+ * @author evelyn
  * @category Cards
  */
 public class Deck {
@@ -44,7 +45,7 @@ public class Deck {
 	 * @return True if empty. False if not.
 	 */
 	public boolean isEmpty() {
-		return cards.isEmpty();
+		return this.cards.isEmpty();
 	}
 
 	/**
@@ -53,7 +54,7 @@ public class Deck {
 	 * @return True if empty. False if not.
 	 */
 	public void emptyDeck() {
-		cards.clear();
+		this.cards.clear();
 	}
 
 	/**
@@ -99,21 +100,25 @@ public class Deck {
 	 */
 	public Card getCard() {
 		ArrayList<Card> list = new ArrayList<>(this.cards);
-		Collections.shuffle(list);
-		list.sort(new Comparator<Card>() {
-			@Override
-			public int compare(Card o1, Card o2) {
-				return o2.priority - o1.priority;
-			}
-		});
-		Card card = list.get(0);
-		this.removeCard(card);
-		return card;
+		if (list.size() > 0) {
+			Collections.shuffle(list);
+			list.sort(new Comparator<Card>() {
+				@Override
+				public int compare(Card o1, Card o2) {
+					return o2.priority - o1.priority;
+				}
+			});
+			Card card = list.get(0);
+			this.removeCard(card);
+			return card;
+		}
+		else return null;
+		
 	}
 
 	@Override
 	public String toString() {
-		return "Cards: " + this.cards;
+		return this.cards.toString();
 	}
 
 	@Override

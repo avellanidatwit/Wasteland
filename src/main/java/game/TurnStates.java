@@ -1,9 +1,10 @@
 package game;
 
+
 /**
  * Enum for the purpose of controlling the turns
  *
- * @author santorsa
+ * @author evelyn
  * @category GameSystems
  * @category Networking
  */

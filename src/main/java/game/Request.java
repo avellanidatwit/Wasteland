@@ -1,10 +1,11 @@
 package game;
 
+
 /**
  * A network request
  *
  * @category Networking
- * @author santorsa
+ * @author evelyn
  */
 public class Request {
 

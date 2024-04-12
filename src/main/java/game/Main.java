@@ -1,5 +1,6 @@
 package game;
 
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Iterator;
@@ -182,6 +183,31 @@ public class Main extends Application {
 				createServer.setText("Can't create Server");
 			}
 		});
+		
+		// music button
+		Button music = new Button();
+		music.setFont(papyrus);
+		music.setStyle("-fx-background-color: #dc893c; -fx-background-radius: 0;");
+		music.setOnMouseEntered(e -> {
+			music.setStyle("-fx-background-color: #C4A484; -fx-background-radius: 0;");
+		});
+		music.setOnMouseExited(e -> {
+			music.setStyle("-fx-background-color: #dc893c; -fx-background-radius: 0;");
+		});
+		music.setText("Music On");
+		music.setMaxWidth(BUTTON_WIDTH);
+		music.setMinWidth(BUTTON_WIDTH);
+		music.setOnAction(e -> {
+			if (play) {
+				mediaPlayer.pause();
+				play = false;
+				music.setText("Music Off");
+			} else {
+				mediaPlayer.play();
+				play = true;
+				music.setText("Music On");
+			}
+		});
 
 		// Tutorial text
 		Label title = new Label();
@@ -210,14 +236,14 @@ public class Main extends Application {
 				+ "You start each game with a forest booster pack that gives you cards to use or craft togeather.\n"
 				+ "Most cards are destroyed after being used. It's important to find renewable resources.\n"
 				+ "Any cards that light up green can be crafted with the selected card.\n"
-				+ "Any cards that light up orange can be smash with a Hammer.\n"
+				+ "Any cards that light up orange can be smashed with a Hammer.\n"
 				+ "Some cards have the Priority keyword which means they are targeted first by discard and destroy effects.");
 
 		VBox centering = new VBox();
 		centering.setAlignment(Pos.CENTER_LEFT);
 		centering.getChildren().addAll(title, label);
 
-		menuButtons.getChildren().addAll(startGame, createServer);
+		menuButtons.getChildren().addAll(startGame, createServer, music);
 		panels.setCenter(menuButtons);
 		panels.setLeft(centering);
 
@@ -588,7 +614,6 @@ public class Main extends Application {
 	 * Takes a card object and creates a visual representation in the players hand.
 	 */
 	public void addCardToHand(Card card) {
-		System.out.println(card.IMAGE);
 		ImageView image = new ImageView(Main.class.getResource(card.IMAGE).toString());
 		image.setFitHeight(CARD_HEIGHT);
 		image.setFitWidth(CARD_WIDTH);

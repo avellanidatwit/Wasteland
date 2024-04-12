@@ -4,7 +4,7 @@ package game;
  * Represents a card, has a series of getters and setters for information.
  *
  * @author Dominic Avellani
- * @author santorsa
+ * @author evelyn
  * @category Cards
  */
 public final class Card {
