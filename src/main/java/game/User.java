@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Class to establish a user's identity and hand.
  *
- * @author evelyn
+ * @author santorsa
  * @category GameSystems
  */
 public final class User {
@@ -18,7 +18,9 @@ public final class User {
 	protected Deck trash;
 	protected static int totalId = 0;
 	protected int id;
-
+	/**
+	 * 0-arg constructor
+	 */
 	public User() {
 		this.USERNAME = null;
 		this.pile = null;

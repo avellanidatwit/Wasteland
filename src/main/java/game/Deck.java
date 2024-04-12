@@ -9,7 +9,7 @@ import java.util.Comparator;
  * Class that establishes a deck, for use in the user hand and the overall deck
  * of cards that will be drawn from.
  *
- * @author evelyn
+ * @author santorsa
  * @category Cards
  */
 public class Deck {

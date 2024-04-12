@@ -4,7 +4,7 @@ package game;
 /**
  * Types of effects that a card can provide
  *
- * @author evelyn
+ * @author santorsa
  * @category Cards
  */
 public enum EffectTypes {

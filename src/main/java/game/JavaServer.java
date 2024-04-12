@@ -14,7 +14,7 @@ import com.esotericsoftware.kryonet.Server;
  * A class that represents a game server which players connect to and get their
  * actions from.
  *
- * @author evelyn
+ * @author santorsa
  * @category Networking
  */
 public class JavaServer {

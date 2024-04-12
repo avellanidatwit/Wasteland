@@ -4,7 +4,7 @@ package game;
 /**
  * Class that manages the turn state.
  *
- * @author evelyn
+ * @author santorsa
  * @category GameSystems
  */
 public class Status {

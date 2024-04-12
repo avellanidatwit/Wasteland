@@ -3,7 +3,7 @@ package game;
 /**
  * Class that determines what a given action is.
  *
- * @author evelyn
+ * @author santorsa
  * @category Actions
  */
 public enum Action {

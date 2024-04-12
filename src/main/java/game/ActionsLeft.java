@@ -4,7 +4,7 @@ package game;
 /**
  * Class that determines how many actions are left.
  *
- * @author Evelyn
+ * @author santorsa
  * @category Actions
  */
 public class ActionsLeft {

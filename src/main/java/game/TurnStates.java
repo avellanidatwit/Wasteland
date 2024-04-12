@@ -4,7 +4,7 @@ package game;
 /**
  * Enum for the purpose of controlling the turns
  *
- * @author evelyn
+ * @author santorsa
  * @category GameSystems
  * @category Networking
  */

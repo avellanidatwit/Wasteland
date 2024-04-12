@@ -5,7 +5,7 @@ package game;
  * A network request
  *
  * @category Networking
- * @author evelyn
+ * @author santorsa
  */
 public class Request {
 

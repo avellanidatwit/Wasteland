@@ -9,7 +9,7 @@ import java.util.HashMap;
  * Class to create all the cards locally, because local object storage is hard
  * in literally everything without native JSON support.
  *
- * @author evelyn
+ * @author santorsa
  *
  * @category Cards
  */
