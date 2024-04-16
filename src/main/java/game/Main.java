@@ -41,7 +41,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
- * Main Function Use fadetransition for text
+ * Main Function
  *
  * @author Dominic Avellani
  */
@@ -240,6 +240,7 @@ public class Main extends Application {
 				+ "Some cards have the Priority keyword which means they are targeted first by discard and destroy effects.");
 
 		VBox centering = new VBox();
+		centering.setPadding(new Insets(0,0,0,10));
 		centering.setAlignment(Pos.CENTER_LEFT);
 		centering.getChildren().addAll(title, label);
 
